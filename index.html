@@ -27,15 +27,7 @@
                         $("csvResponse").value = response;
                     }
                 }).send(); //Don't forget to send our request!
-				
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					fileDisplayArea.innerText = reader.result;
-				}
-
-				reader.readAsText(file);
-				)
+				localStorage.setItem("csvRequest", csvRequest);
             });
         </script>
 	
@@ -70,7 +62,9 @@
 			</span>
 			<div id="byte_range"></div>
 			<div id="byte_content"></div>
-		
+			<script>
+				console.log(localStorage.name);
+			</script>
 		</div>
 	  </main>
 	</div>
