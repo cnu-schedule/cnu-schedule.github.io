@@ -27,7 +27,15 @@
                         $("csvResponse").value = response;
                     }
                 }).send(); //Don't forget to send our request!
-				console.log(this.csvRequest)
+				
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					fileDisplayArea.innerText = reader.result;
+				}
+
+				reader.readAsText(file);
+				)
             });
         </script>
 	
@@ -62,10 +70,6 @@
 			</span>
 			<div id="byte_range"></div>
 			<div id="byte_content"></div>
-
-			<script>
-			  var control = document.getElement
-			</script>
 		
 		</div>
 	  </main>
