@@ -22,7 +22,6 @@ new Vue({
       console.log("Hello World");
 
       Papa.parse("csv/201610.csv", {
-        worker: true,
         download: true,
         setp: function(row) {
           console.log(row.data);
