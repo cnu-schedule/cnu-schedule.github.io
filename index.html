@@ -45,6 +45,11 @@
         </thead>
         <tbody>
           <tr v-for="cls in classes">
+            <td>
+              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{task.crn}}">
+                <input type="checkbox" id="checkbox-{{cls.crn}}" class="mdl-checkbox__input" v-model="false" />
+              </label>
+            </td>
             <td class="mdl-data-table__cell--non-numeric">{{ cls.crn }}</td>
             <td class="mdl-data-table__cell--non-numeric">{{ cls.cour }}</td>
             <td class="mdl-data-table__cell--non-numeric">{{ cls.sect }}</td>
@@ -59,11 +64,6 @@
           </tr>
         </tbody>
       </table>
-      <div class="mdl-cell mdl-cell--6-col">
-        <pre>
-           {{ $data | json }}
-        </pre>
-      </div>
     </div>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js'></script>
     <script src="js/index.js"></script>
