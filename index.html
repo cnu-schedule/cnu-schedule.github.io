@@ -7,65 +7,59 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>CNU Class Scheduler</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  	<!-- MDL -->
-    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-  	<link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
-  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <!-- CSV decode -->
-    <script src="http://papaparse.com/resources/js/papaparse.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.16.0/clusterize.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://papaparse.com/resources/js/papaparse.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.16.0/clusterize.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body>
-    <div id="classapp">
-      <div>
-        <button v-on:click="genClass" class="mdl-button mdl-js-button mdl-button--raised">Add Classes</button>
-      </div>
-      <br/>
-      <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-          <tr>
-            <th>CRN</th>
-            <th>Course</th>
-            <th>Section</th>
-            <th>Title</th>
-            <th>Hours</th>
-            <th>Area of LLC</th>
-            <th>Type</th>
-            <th>Days</th>
-            <th>Time</th>
-            <th>Location</th>
-            <th>Instructor</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="cls in classes">
-            <td>
-              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-{{task.crn}}">
-                <input type="checkbox" id="checkbox-{{cls.crn}}" class="mdl-checkbox__input" v-model="false" />
-              </label>
-            </td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.crn }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.cour }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.sect }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.titl }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.hour }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.area }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.type }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.days }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.time }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.loct }}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{ cls.ints }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">CNU Class Scheduler</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" name="sample" id="search" />
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="page-content">
+            <div class="col-md-5">
+              <!-- <div id="list"></div> -->
+              <br>
+              <div id="scrollArea" class="clusterize-scroll" style="max-height:87vh;">
+                <div id="contentArea" class="clusterize-content">
+                  <div class="clusterize-no-data">Loading data…</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <br>
+              <div id="calendar"></div>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.16/vue.min.js'></script>
-    <script src="js/index.js"></script>
   </body>
 </html>
